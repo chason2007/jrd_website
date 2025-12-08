@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | JR Dream</title>
+
+    <!-- 1. External Libraries (Tailwind CSS & Lucide Icons) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- 2. Configuration (Copied from main.html) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#2a2356',   /* Primary Dark Purple */
+                            gold: '#f37840',   /* Accent Sunset Orange */
+                            light: '#f8fafc',  /* Light Background */
+                            accent: '#4c1d95'  /* Darker Purple Accent */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 3. Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-sans text-slate-600 antialiased smooth-scroll bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- ============================================
+         SECTION: NAVIGATION BAR
+         ============================================ -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Brand Logo (Links to Home) -->
+                <a href="main.html" class="flex-shrink-0 flex items-center gap-2">
+                    <div
+                        class="w-10 h-10 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-xl border border-brand-gold">
+                        <img src="logo.png" alt="logo">
+                    </div>
+                </a>
+
+                <!-- Desktop Links (Updated to absolute paths for consistency) -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="main.html#about"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">About Us</a>
+                    <a href="main.html#services"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Services</a>
+                    <a href="main.html#team"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Our Team</a>
+                    <a href="main.html#contact"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-4">
+                    <!-- Highlighting Admin Portal -->
+                    <span class="hidden md:block text-sm font-bold text-brand-navy border-b-2 border-brand-gold">Admin
+                        Portal</span>
+                    <a href="main.html#contact"
+                        class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-sm text-white bg-brand-navy hover:bg-brand-accent transition-all shadow-lg shadow-brand-navy/20">
+                        Get a Consultation
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-brand-navy p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="main.html#about"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">About
+                    Us</a>
+                <a href="main.html#services"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Services</a>
+                <a href="main.html#team"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Our
+                    Team</a>
+                <a href="main.html#contact"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Contact</a>
+                <div class="pt-4 border-t border-slate-100 mt-2">
+                    <a href="main.html#contact"
+                        class="block w-full text-center px-4 py-3 bg-brand-navy text-white rounded-sm font-medium">Get a
+                        Consultation</a>
+                    <span
+                        class="block w-full text-center px-4 py-3 text-brand-navy font-bold text-sm mt-2 bg-slate-50">Admin
+                        Portal</span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         SECTION: LOGIN CONTENT
+         ============================================ -->
+    <div class="relative flex-grow flex items-center justify-center hero-bg py-32 px-4 sm:px-6 lg:px-8">
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-brand-gold/20 opacity-90">
+        </div>
+
+        <!-- Login Card -->
+        <div class="relative z-10 w-full max-w-md bg-white rounded-sm shadow-2xl overflow-hidden animate-fade-in-up">
+            <div class="p-8 sm:p-10">
+                <div class="text-center mb-8">
+                    <span
+                        class="inline-block py-1 px-3 rounded-full bg-brand-navy/10 text-brand-navy text-xs font-semibold tracking-wider uppercase mb-2">Restricted
+                        Access</span>
+                    <h2 class="text-3xl font-serif font-bold text-brand-navy">Exclusively for Admins</h2>
+                    <p class="text-slate-500 mt-2 text-sm">Access the dashboard to manage properties, users, and
+                        settings.</p>
+                </div>
+
+                <form action="#" method="POST" class="space-y-6" onsubmit="event.preventDefault();">
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-slate-700 mb-1">Admin Email</label>
+                        <div class="relative">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <i data-lucide="shield" class="w-5 h-5"></i>
+                            </div>
+                            <input id="email" name="email" type="email" autocomplete="email" required
+                                class="w-full pl-10 px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none text-slate-800 transition-all placeholder:text-slate-400"
+                                placeholder="admin@jrdream.com">
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="flex items-center justify-between mb-1">
+                            <label for="password" class="block text-sm font-medium text-slate-700">Password</label>
+                            <a href="#" class="text-sm font-medium text-brand-gold hover:text-orange-600">Forgot
+                                password?</a>
+                        </div>
+                        <div class="relative">
+                            <div
+                                class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none text-slate-400">
+                                <i data-lucide="lock" class="w-5 h-5"></i>
+                            </div>
+                            <input id="password" name="password" type="password" autocomplete="current-password"
+                                required
+                                class="w-full pl-10 px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none text-slate-800 transition-all placeholder:text-slate-400"
+                                placeholder="••••••••">
+                        </div>
+                    </div>
+
+                    <div>
+                        <button type="submit"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-sm shadow-sm text-sm font-medium text-white bg-brand-navy hover:bg-brand-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-brand-navy transition-all">
+                            Login to Dashboard
+                        </button>
+                    </div>
+                </form>
+
+                <div class="mt-6">
+                    <div class="relative">
+                        <div class="absolute inset-0 flex items-center">
+                            <div class="w-full border-t border-slate-200"></div>
+                        </div>
+                        <div class="relative flex justify-center text-sm">
+                            <span class="px-2 bg-white text-slate-500">Not an admin?</span>
+                        </div>
+                    </div>
+                    <div class="mt-6 text-center space-y-3">
+                        <a href="login.html"
+                            class="block text-sm font-medium text-brand-gold hover:text-orange-600 transition-colors">
+                            Client Login
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <!-- Decorative bottom strip -->
+            <div class="h-2 bg-gradient-to-r from-brand-navy via-brand-gold to-brand-navy"></div>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECTION: FOOTER
+         ============================================ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div
+                            class="w-8 h-8 bg-slate-800 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-lg border border-slate-700">
+                            <img src="logo.png" style="background-color: white;" alt="Logo"
+                                class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-xl font-bold text-white">JRDream</span>
+                    </div>
+                    <p class="text-sm max-w-xs mb-4">
+                        Redefining property and facilities management consulting in the modern UAE business landscape.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="main.html#about" class="hover:text-brand-gold transition-colors">About Us</a></li>
+                        <li><a href="main.html#services" class="hover:text-brand-gold transition-colors">Services</a>
+                        </li>
+                        <li><a href="main.html#team" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs">&copy; 2024 JR Dream Property & Asset Management Consultancy. All Rights Reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/jr-dream/" target="_blank"
+                        class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin"
+                            class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Script for Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>

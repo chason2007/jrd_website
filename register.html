@@ -1,0 +1,468 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration | JR Dream</title>
+
+    <!-- 1. External Libraries -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- 2. Configuration -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#2a2356',
+                            gold: '#f37840',
+                            light: '#f8fafc',
+                            accent: '#4c1d95'
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 3. Custom CSS -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-sans text-slate-600 antialiased smooth-scroll bg-slate-50 flex flex-col min-h-screen">
+
+    <!-- NAVIGATION BAR -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Brand Logo -->
+                <a href="main.html" class="flex-shrink-0 flex items-center gap-2">
+                    <div
+                        class="w-10 h-10 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-xl border border-brand-gold">
+                        <img src="logo.png" alt="logo">
+                    </div>
+                </a>
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="main.html#about"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">About Us</a>
+                    <a href="main.html#services"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Services</a>
+                    <a href="main.html#team"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Our Team</a>
+                    <a href="main.html#contact"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Contact</a>
+                </div>
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-4">
+                    <a href="login.html"
+                        class="hidden md:block text-sm font-medium text-brand-navy hover:text-brand-gold">Client
+                        Portal</a>
+                    <a href="main.html#contact"
+                        class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-sm text-white bg-brand-navy hover:bg-brand-accent transition-all shadow-lg shadow-brand-navy/20">
+                        Get a Consultation
+                    </a>
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-brand-navy p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="main.html#about"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">About
+                    Us</a>
+                <a href="main.html#services"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Services</a>
+                <a href="main.html#team"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Our
+                    Team</a>
+                <a href="main.html#contact"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Contact</a>
+                <div class="pt-4 border-t border-slate-100 mt-2">
+                    <a href="main.html#contact"
+                        class="block w-full text-center px-4 py-3 bg-brand-navy text-white rounded-sm font-medium">Get
+                        a Consultation</a>
+                    <a href="login.html" class="block w-full text-center px-4 py-3 text-slate-500 text-sm mt-2">Client
+                        Portal</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- CONTENT SECTION -->
+    <div class="relative flex-grow pt-32 pb-24 px-4 sm:px-6 lg:px-8 hero-bg">
+        <!-- Dark Overlay -->
+        <div class="absolute inset-0 bg-brand-navy/60 mix-blend-multiply"></div>
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/40 to-brand-gold/20 opacity-90">
+        </div>
+
+        <div class="relative z-10 max-w-4xl mx-auto">
+            <!-- Header -->
+            <div class="text-center mb-12 animate-fade-in-up">
+                <span style="color: #f37840;"
+                    class="inline-block py-1 px-3 rounded-full bg-brand-gold/10 border border-brand-gold/20 text-brand-gold text-xs font-semibold tracking-wider uppercase mb-4 shadow-sm bg-white/90 backdrop-blur-sm">
+                    Join Our Network
+                </span>
+                <h1 class="text-3xl md:text-5xl font-serif font-bold text-white mb-4 drop-shadow-md">Professional
+                    Registration
+                    Portal
+                </h1>
+                <p class="text-slate-200 max-w-2xl mx-auto font-light text-lg">
+                    Register your company to access our premium services or join our network of trusted service
+                    providers.
+                </p>
+            </div>
+
+            <!-- Tab Navigation -->
+            <div class="flex justify-center mb-12">
+                <div class="bg-white p-1 rounded-md shadow-sm border border-slate-200 inline-flex">
+                    <button onclick="switchTab('client')" id="tab-client"
+                        class="px-6 py-2.5 rounded-sm text-sm font-medium transition-all duration-200 bg-brand-navy text-white shadow-sm">
+                        Client Registration
+                    </button>
+                    <button onclick="switchTab('provider')" id="tab-provider"
+                        class="px-6 py-2.5 rounded-sm text-sm font-medium text-slate-500 hover:text-brand-navy transition-all duration-200">
+                        Service Provider
+                    </button>
+                </div>
+            </div>
+
+            <!-- Forms Container -->
+            <div class="bg-white rounded-lg shadow-xl border border-slate-100 overflow-hidden relative">
+
+                <!-- Client Registration Form -->
+                <div id="form-client" class="p-8 md:p-12 animate-fade-in-up">
+                    <div class="mb-8 pb-4 border-b border-slate-100">
+                        <h2 class="text-2xl font-serif font-bold text-brand-navy">Client Registration</h2>
+                        <p class="text-sm text-slate-500 mt-1">For companies seeking property management solutions.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); submitForm(this, 'Client');" class="space-y-8">
+                        <!-- Company Info -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Company
+                                Information</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Trade License Number
+                                        *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Location & Industry -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Location &
+                                Industry</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">City/Available
+                                        Locations *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Industry Type</label>
+                                    <select
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
+                                        <option>Corporate</option>
+                                        <option>Hospitality</option>
+                                        <option>Residential</option>
+                                        <option>Other</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Person -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact Person
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
+                                    <input type="email" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
+                                    <input type="tel" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Designation</label>
+                                    <input type="text"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Uploads -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Documents</h3>
+                            <div
+                                class="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer group">
+                                <div
+                                    class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                    <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                                </div>
+                                <p class="text-sm font-medium text-slate-700">Click to upload or drag and drop</p>
+                                <p class="text-xs text-slate-400 mt-1">Trade License, Tax Certificate (PDF, JPG up to
+                                    10MB)</p>
+                                <input type="file" class="hidden">
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full bg-brand-navy hover:bg-brand-accent text-white font-medium py-3 rounded-sm transition-all shadow-lg shadow-brand-navy/20">
+                                Submit Registration
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Service Provider Registration Form -->
+                <div id="form-provider" class="hidden p-8 md:p-12 animate-fade-in-up">
+                    <div class="mb-8 pb-4 border-b border-slate-100">
+                        <h2 class="text-2xl font-serif font-bold text-brand-navy">Service Provider Registration</h2>
+                        <p class="text-sm text-slate-500 mt-1">For vendors and contractors joining our supply chain.</p>
+                    </div>
+
+                    <form onsubmit="event.preventDefault(); submitForm(this, 'Provider');" class="space-y-8">
+                        <!-- Company Info -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Company Details
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Trade License No.
+                                        *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Core Services
+                                        Provided</label>
+                                    <textarea rows="2"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                        placeholder="e.g. HVAC Maintenance, Cleaning, Security..."></textarea>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Contact Details -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact
+                                Information</h3>
+                            <div class="grid md:grid-cols-2 gap-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Contact Person
+                                        *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
+                                    <input type="tel" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
+                                    <input type="email" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Uploads -->
+                        <div>
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Required
+                                Documents</h3>
+                            <div class="grid md:grid-cols-2 gap-4">
+                                <div
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <p class="text-sm font-medium text-slate-700">Company Profile</p>
+                                    <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
+                                </div>
+                                <div
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <p class="text-sm font-medium text-slate-700">Trade License</p>
+                                    <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
+                                </div>
+                                <div
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <p class="text-sm font-medium text-slate-700">TRN Certificate</p>
+                                    <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
+                                </div>
+                                <div
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <p class="text-sm font-medium text-slate-700">ISO Certificates</p>
+                                    <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="pt-4">
+                            <button type="submit"
+                                class="w-full bg-brand-navy hover:bg-brand-accent text-white font-medium py-3 rounded-sm transition-all shadow-lg shadow-brand-navy/20">
+                                Submit Application
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Success Message Overlay -->
+                <div id="success-overlay"
+                    class="hidden absolute inset-0 bg-white/95 backdrop-blur-sm z-50 flex items-center justify-center p-8">
+                    <div class="text-center animate-fade-in-up">
+                        <div
+                            class="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto mb-6">
+                            <i data-lucide="check" class="w-10 h-10"></i>
+                        </div>
+                        <h2 class="text-3xl font-serif font-bold text-brand-navy mb-4">Submission Successful!</h2>
+                        <p class="text-slate-600 mb-8 max-w-md mx-auto">
+                            Thank you for registering. Your details have been submitted successfully. Our team will
+                            review your application and contact you shortly.
+                        </p>
+                        <a href="login.html"
+                            class="inline-block px-8 py-3 bg-brand-gold hover:bg-orange-600 text-white font-medium rounded-sm transition-colors">
+                            Back to Login
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- FOOTER -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div
+                            class="w-8 h-8 bg-slate-800 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-lg border border-slate-700">
+                            <img src="logo.png" style="background-color: white;" alt="Logo"
+                                class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-xl font-bold text-white">JRDream</span>
+                    </div>
+                    <p class="text-sm max-w-xs mb-4">
+                        Redefining property and facilities management consulting in the modern UAE business landscape.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="main.html#about" class="hover:text-brand-gold transition-colors">About Us</a></li>
+                        <li><a href="main.html#services" class="hover:text-brand-gold transition-colors">Services</a>
+                        </li>
+                        <li><a href="main.html#team" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs">&copy; 2024 JR Dream Property & Asset Management Consultancy. All Rights Reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/jr-dream/" target="_blank"
+                        class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin"
+                            class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        function switchTab(type) {
+            const clientTab = document.getElementById('tab-client');
+            const providerTab = document.getElementById('tab-provider');
+            const clientForm = document.getElementById('form-client');
+            const providerForm = document.getElementById('form-provider');
+
+            if (type === 'client') {
+                // Activate Client Tab
+                clientTab.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
+                clientTab.classList.remove('text-slate-500');
+
+                providerTab.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
+                providerTab.classList.add('text-slate-500');
+
+                // Show Client Form
+                clientForm.classList.remove('hidden');
+                providerForm.classList.add('hidden');
+
+            } else {
+                // Activate Provider Tab
+                providerTab.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
+                providerTab.classList.remove('text-slate-500');
+
+                clientTab.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
+                clientTab.classList.add('text-slate-500');
+
+                // Show Provider Form
+                providerForm.classList.remove('hidden');
+                clientForm.classList.add('hidden');
+            }
+        }
+
+        function submitForm(formElement, type) {
+            // Simulate API call
+            const btn = formElement.querySelector('button[type="submit"]');
+            const originalText = btn.innerText;
+            btn.innerText = 'Submitting...';
+            btn.disabled = true;
+            btn.classList.add('opacity-75');
+
+            setTimeout(() => {
+                document.getElementById('success-overlay').classList.remove('hidden');
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>
