@@ -68,4 +68,28 @@ document.addEventListener('DOMContentLoaded', () => {
             }, 5000);
         });
     }
+
+    // 5. Back to Top Button Logic
+    const backToTopBtn = document.getElementById('back-to-top');
+
+    if (backToTopBtn) {
+        // Show/Hide button on scroll
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.remove('opacity-0', 'invisible', 'translate-y-4');
+                backToTopBtn.classList.add('opacity-100', 'visible', 'translate-y-0');
+            } else {
+                backToTopBtn.classList.add('opacity-0', 'invisible', 'translate-y-4');
+                backToTopBtn.classList.remove('opacity-100', 'visible', 'translate-y-0');
+            }
+        });
+
+        // Scroll to top on click
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
