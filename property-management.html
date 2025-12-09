@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Property Management | JR Dream</title>
+
+    <!-- 1. External Libraries (Tailwind CSS & Lucide Icons) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap"
+        rel="stylesheet">
+
+    <!-- 2. Configuration (Edit Colors Here) -->
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            navy: '#2a2356',   /* Primary Dark Purple */
+                            gold: '#f37840',   /* Accent Sunset Orange */
+                            light: '#f8fafc',  /* Light Background */
+                            accent: '#4c1d95'  /* Darker Purple Accent */
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Playfair Display', 'serif'],
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                    },
+                    keyframes: {
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(20px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- 3. Custom CSS (Background Images & Effects) -->
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="font-sans text-slate-600 antialiased smooth-scroll bg-slate-50">
+
+    <!-- ============================================
+         SECTION: NAVIGATION BAR
+         ============================================ -->
+    <nav class="fixed w-full z-50 bg-white/95 backdrop-blur-md border-b border-slate-100 shadow-sm transition-all duration-300"
+        id="navbar">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+
+                <!-- Brand Logo -->
+                <a href="main.html" class="flex-shrink-0 flex items-center gap-2">
+                    <div
+                        class="w-10 h-10 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-xl border border-brand-gold">
+                        <img src="logo.png" alt="logo">
+                    </div>
+                </a>
+
+                <!-- Desktop Links -->
+                <div class="hidden md:flex items-center space-x-8">
+                    <a href="main.html#about"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">About Us</a>
+                    <a href="main.html#services"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Services</a>
+                    <a href="main.html#team"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Our Team</a>
+                    <a href="main.html#contact"
+                        class="text-sm font-medium text-slate-600 hover:text-brand-navy transition-colors">Contact</a>
+                </div>
+
+                <!-- Right Side Actions -->
+                <div class="flex items-center gap-4">
+                    <a href="login.html"
+                        class="hidden md:block text-sm font-medium text-brand-navy hover:text-brand-gold">Client
+                        Portal</a>
+                    <a href="main.html#contact"
+                        class="hidden md:inline-flex items-center justify-center px-5 py-2.5 border border-transparent text-sm font-medium rounded-sm text-white bg-brand-navy hover:bg-brand-accent transition-all shadow-lg shadow-brand-navy/20">
+                        Get a Consultation
+                    </a>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobile-menu-btn" class="md:hidden text-slate-600 hover:text-brand-navy p-2">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu Dropdown -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-4 pt-2 pb-6 space-y-1">
+                <a href="main.html#about"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">About
+                    Us</a>
+                <a href="main.html#services"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Services</a>
+                <a href="main.html#team"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Our
+                    Team</a>
+                <a href="main.html#contact"
+                    class="block px-3 py-3 text-base font-medium text-slate-600 hover:text-brand-navy hover:bg-slate-50 rounded-md">Contact</a>
+                <div class="pt-4 border-t border-slate-100 mt-2">
+                    <a href="main.html#contact"
+                        class="block w-full text-center px-4 py-3 bg-brand-navy text-white rounded-sm font-medium">Get a
+                        Consultation</a>
+                    <a href="login.html" class="block w-full text-center px-4 py-3 text-slate-500 text-sm mt-2">Client
+                        Portal</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- ============================================
+         SECTION: HERO HEADER
+         ============================================ -->
+    <div class="relative h-[60vh] flex items-center justify-center bg-slate-900 overflow-hidden">
+        <!-- Background Image -->
+        <img src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=2000&auto=format&fit=crop"
+            alt="Property Management Hero" class="absolute inset-0 w-full h-full object-cover opacity-60">
+
+        <!-- Gradient Overlay -->
+        <div class="absolute inset-0 bg-gradient-to-t from-brand-navy via-brand-navy/60 to-transparent"></div>
+
+        <div class="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center mt-10">
+            <span
+                class="inline-block py-1 px-3 rounded-full bg-brand-gold/20 border border-brand-gold/30 text-brand-gold text-xs font-semibold tracking-wider uppercase mb-6 animate-fade-in-up">
+                Professional Services
+            </span>
+            <h1
+                class="text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white mb-6 leading-tight animate-fade-in-up">
+                Property Management
+            </h1>
+            <p class="text-lg text-slate-200 mobile:text-sm max-w-2xl mx-auto font-light animate-fade-in-up"
+                style="animation-delay: 0.1s;">
+                Maximizing value, ensuring compliance, and delivering operational excellence for your real estate
+                assets.
+            </p>
+        </div>
+    </div>
+
+    <!-- ============================================
+         SECTION: MAIN CONTENT
+         ============================================ -->
+    <section class="py-24 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <!-- Content Column -->
+                <div>
+                    <h2 class="text-brand-gold font-semibold uppercase tracking-wider text-sm mb-2">Comprehensive
+                        Solutions</h2>
+                    <h3 class="text-3xl md:text-4xl font-serif font-bold text-brand-navy mb-6"> tailored to your
+                        investment goals.</h3>
+
+                    <div class="text-slate-600 space-y-6 text-lg leading-relaxed">
+                        <p>
+                            We offer comprehensive property management services designed to meet the unique needs of
+                            both
+                            <span class="font-semibold text-brand-navy">corporate</span> and <span
+                                class="font-semibold text-brand-navy">private property owners</span>.
+                        </p>
+                        <p>
+                            Our goal is to maximize the value of your real estate investments while ensuring smooth
+                            operations
+                            and compliance with regulations for residential, commercial, or mixed-use properties.
+                        </p>
+                        <p class="border-l-4 border-brand-gold pl-6 italic text-slate-500">
+                            "Our services are tailored to provide peace of mind and optimal results."
+                        </p>
+                        <p>
+                            Our well-trained team ensures your properties are professionally managed with
+                            transparency, efficiency, and a strong focus on your specific investment goals.
+                        </p>
+                    </div>
+
+                    <div class="mt-10">
+                        <a href="main.html#contact"
+                            class="inline-flex items-center gap-2 px-8 py-4 bg-brand-navy hover:bg-brand-accent text-white font-medium rounded-sm transition-all shadow-lg shadow-brand-navy/20">
+                            Contract Us Today <i data-lucide="arrow-right" class="w-4 h-4"></i>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Features/Visual Column -->
+                <div class="space-y-8">
+                    <!-- Feature Card 1 -->
+                    <div
+                        class="flex gap-4 p-6 bg-slate-50 rounded-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 bg-brand-gold/10 text-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="trending-up" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg mb-2">Value Maximization</h4>
+                            <p class="text-slate-600 text-sm">Strategic planning to enhance the long-term value and ROI
+                                of your assets.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Card 2 -->
+                    <div
+                        class="flex gap-4 p-6 bg-slate-50 rounded-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 bg-brand-gold/10 text-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="shield-check" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg mb-2">Compliance & Safety</h4>
+                            <p class="text-slate-600 text-sm">Rigorous adherence to local regulations and safety
+                                standards for risk mitigation.</p>
+                        </div>
+                    </div>
+
+                    <!-- Feature Card 3 -->
+                    <div
+                        class="flex gap-4 p-6 bg-slate-50 rounded-sm border border-slate-100 hover:shadow-md transition-shadow">
+                        <div
+                            class="w-12 h-12 bg-brand-gold/10 text-brand-gold rounded-full flex items-center justify-center flex-shrink-0">
+                            <i data-lucide="users" class="w-6 h-6"></i>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-navy text-lg mb-2">Tenant Satisfaction</h4>
+                            <p class="text-slate-600 text-sm">Professional management that ensures high retention rates
+                                and satisfied tenants.</p>
+                        </div>
+                    </div>
+
+                    <!-- Box Image -->
+                    <img src="https://images.unsplash.com/photo-1560518883-ce09059eeffa?q=80&w=800&auto=format&fit=crop"
+                        alt="Property Key" class="w-full h-48 object-cover rounded-sm shadow-lg mt-6">
+
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION: CTA BANNER
+         ============================================ -->
+    <section class="py-16 bg-brand-navy text-center">
+        <div class="max-w-4xl mx-auto px-4">
+            <h2 class="text-2xl md:text-3xl font-serif font-bold text-white mb-6">Ready to streamline your property
+                management?</h2>
+            <p class="text-slate-300 mb-8 max-w-2xl mx-auto">
+                Contact us today to discuss how we can manage your properties effectively.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4">
+                <a href="main.html#contact"
+                    class="px-8 py-3 bg-brand-gold hover:bg-orange-600 text-white font-medium rounded-sm transition-all shadow-lg shadow-brand-gold/20">
+                    Get in Touch
+                </a>
+                <a href="tel:+971529985655"
+                    class="px-8 py-3 border border-white/20 text-white hover:bg-white/5 font-medium rounded-sm transition-all">
+                    Call +971 52 998 5655
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============================================
+         SECTION: FOOTER
+         ============================================ -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div class="col-span-1 md:col-span-2">
+                    <div class="flex items-center gap-2 mb-4">
+                        <div
+                            class="w-8 h-8 bg-slate-800 rounded-sm flex items-center justify-center text-brand-gold font-serif font-bold text-lg border border-slate-700">
+                            <img src="logo.png" style="background-color: white;" alt="Logo"
+                                class="w-full h-full object-contain">
+                        </div>
+                        <span class="text-xl font-bold text-white">JRDream</span>
+                    </div>
+                    <p class="text-sm max-w-xs mb-4">
+                        Redefining property and facilities management consulting in the modern UAE business landscape.
+                    </p>
+                </div>
+                <div>
+                    <h5 class="text-white font-semibold mb-4">Quick Links</h5>
+                    <ul class="space-y-2 text-sm">
+                        <li><a href="main.html#about" class="hover:text-brand-gold transition-colors">About Us</a></li>
+                        <li><a href="main.html#services" class="hover:text-brand-gold transition-colors">Services</a>
+                        </li>
+                        <li><a href="main.html#team" class="hover:text-brand-gold transition-colors">Leadership</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+                <p class="text-xs">&copy; 2024 JR Dream Property & Asset Management Consultancy. All Rights Reserved.
+                </p>
+                <div class="flex gap-4">
+                    <a href="https://www.linkedin.com/company/jr-dream/" target="_blank"
+                        class="text-slate-400 hover:text-white transition-colors"><i data-lucide="linkedin"
+                            class="w-5 h-5"></i></a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- External Script for Logic -->
+    <script src="script.js"></script>
+</body>
+
+</html>
