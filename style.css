@@ -24,3 +24,51 @@
 .team-card-hover:hover img {
     transform: scale(1.05);
 }
+
+/* -----------------------------------------------------------------
+   Modern Card Styling (Lift & Glass)
+   ----------------------------------------------------------------- */
+.card-lift {
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.card-lift:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+}
+
+.glass-panel {
+    background: rgba(255, 255, 255, 0.7);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    border: 1px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+}
+
+/* Optional: Gradient Border effect using pseudo-element */
+.gradient-border-hover {
+    position: relative;
+    background: white;
+    background-clip: padding-box;
+    border: 1px solid transparent;
+}
+
+.gradient-border-hover::after {
+    content: "";
+    position: absolute;
+    top: -1px;
+    bottom: -1px;
+    left: -1px;
+    right: -1px;
+    background: linear-gradient(135deg, #f37840 0%, #2a2356 100%);
+    content: '';
+    z-index: -1;
+    border-radius: 0.125rem;
+    /* Matches rounded-sm */
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.gradient-border-hover:hover::after {
+    opacity: 1;
+}
