@@ -93,7 +93,7 @@ document.addEventListener('DOMContentLoaded', () => {
  * Injects the Navigation Bar and Footer into the DOM.
  */
 function injectLayout() {
-    const path = window.location.pathname;
+    const path = globalThis.location.pathname;
     const isMainPage = path.endsWith('main.html') || path.endsWith('/') || path.endsWith('index.html');
     const isAdminPage = path.includes('admin-login.html');
     const isLoginPage = path.includes('login.html') && !isAdminPage;
