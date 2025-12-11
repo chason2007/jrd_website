@@ -65,6 +65,29 @@
                 </div>
             </div>
 
+            <!-- Stepper UI -->
+            <div class="mb-8 hidden" id="stepper-wrapper">
+                <div class="flex items-center justify-between relative">
+                    <div
+                        class="absolute left-0 top-1/2 transform -translate-y-1/2 w-full h-1 bg-slate-200 -z-10 rounded-full">
+                    </div>
+                    <div class="absolute left-0 top-1/2 transform -translate-y-1/2 h-1 bg-brand-gold -z-10 rounded-full transition-all duration-300"
+                        id="progress-bar" style="width: 0%"></div>
+
+                    <!-- Steps will be generated or hardcoded, using 1-5 -->
+                    <div class="step-indicator active w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-brand-navy text-white transition-all duration-300 border-4 border-slate-50 relative"
+                        data-index="1">1</div>
+                    <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-slate-200 text-slate-500 transition-all duration-300 border-4 border-slate-50 relative"
+                        data-index="2">2</div>
+                    <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-slate-200 text-slate-500 transition-all duration-300 border-4 border-slate-50 relative"
+                        data-index="3">3</div>
+                    <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-slate-200 text-slate-500 transition-all duration-300 border-4 border-slate-50 relative"
+                        data-index="4">4</div>
+                    <div class="step-indicator w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm bg-slate-200 text-slate-500 transition-all duration-300 border-4 border-slate-50 relative"
+                        data-index="5">5</div>
+                </div>
+            </div>
+
             <!-- Forms Container -->
             <div class="bg-white rounded-lg shadow-xl border border-slate-100 overflow-hidden relative">
 
@@ -75,14 +98,45 @@
                         <p class="text-sm text-slate-500 mt-1">For companies seeking property management solutions.</p>
                     </div>
 
-                    <form onsubmit="event.preventDefault(); submitForm(this, 'Client');" class="space-y-8">
-                        <!-- Company Info -->
-                        <div>
+                    <form onsubmit="event.preventDefault(); submitForm(this, 'Client');" class="min-h-[400px]"
+                        id="client-wizard-form">
+
+                        <!-- Step 1: Company Info -->
+                        <div class="form-step" data-step="1">
                             <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Company
                                 Information</h3>
-                            <div class="grid md:grid-cols-2 gap-6">
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Type *</label>
+                                    <select required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
+                                        <option value="">Select company type</option>
+                                        <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                        <option value="Civil Company">Civil Company</option>
+                                        <option value="Limited Liability Company (LLC)">Limited Liability Company (LLC)
+                                        </option>
+                                        <option value="Free Zone Company (FZC)">Free Zone Company (FZC)</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Public Joint Stock Company (PJSC)">Public Joint Stock Company
+                                            (PJSC)</option>
+                                        <option value="Private Joint Stock Company">Private Joint Stock Company</option>
+                                        <option value="Branch Office of Foreign Companies">Branch Office of Foreign
+                                            Companies</option>
+                                    </select>
+                                </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
+                                    <input type="text" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Email *</label>
+                                    <input type="email" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">TRN/VAT Number
+                                        *</label>
                                     <input type="text" required
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
@@ -93,81 +147,143 @@
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                             </div>
-                        </div>
-
-                        <!-- Location & Industry -->
-                        <div>
-                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Location &
-                                Industry</h3>
-                            <div class="grid md:grid-cols-2 gap-6">
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">City/Available
-                                        Locations *</label>
-                                    <input type="text" required
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
-                                </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Industry Type</label>
-                                    <select
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
-                                        <option>Corporate</option>
-                                        <option>Hospitality</option>
-                                        <option>Residential</option>
-                                        <option>Other</option>
-                                    </select>
-                                </div>
+                            <div class="flex justify-end pt-4">
+                                <button type="button" onclick="nextStep(1)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
                             </div>
                         </div>
 
-                        <!-- Contact Person -->
-                        <div>
-                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact Person
+                        <!-- Step 2: Location Details -->
+                        <div class="form-step hidden" data-step="2">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Location Details
                             </h3>
-                            <div class="grid md:grid-cols-2 gap-6">
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Country *</label>
+                                    <select required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
+                                        <option value="United Arab Emirates" selected>United Arab Emirates</option>
+                                    </select>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Emirate *</label>
+                                    <select required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
+                                        <option value="">Select emirate</option>
+                                        <option value="Abu Dhabi">Abu Dhabi</option>
+                                        <option value="Dubai">Dubai</option>
+                                        <option value="Sharjah">Sharjah</option>
+                                        <option value="Ajman">Ajman</option>
+                                        <option value="Umm Al Quwain">Umm Al Quwain</option>
+                                        <option value="Ras Al Khaimah">Ras Al Khaimah</option>
+                                        <option value="Fujairah">Fujairah</option>
+                                    </select>
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Registered
+                                        Address *</label>
+                                    <textarea required rows="3" minlength="10"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"></textarea>
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Phone Number
+                                        *</label>
+                                    <input type="tel" required pattern="^(?:[0-9]●?){7,15}$"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                        placeholder="e.g., 501234567">
+                                </div>
+                            </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(2)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="button" onclick="nextStep(2)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Industry Information -->
+                        <div class="form-step hidden" data-step="3">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Industry
+                                Information</h3>
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-slate-700 mb-1">Industry Type</label>
+                                <input type="text"
+                                    class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                    placeholder="e.g., Construction, IT, Healthcare">
+                            </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(3)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="button" onclick="nextStep(3)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 4: Contact Person -->
+                        <div class="form-step hidden" data-step="4">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact Person's
+                                Details
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Full Name *</label>
-                                    <input type="text" required
+                                    <input type="text" required minlength="3"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Designation *</label>
+                                    <input type="text" required minlength="2"
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
                                     <input type="email" required
+                                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
-                                    <input type="tel" required
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                    <input type="tel" required pattern="^(?:[0-9]●?){7,15}$"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                        placeholder="e.g., 501234567">
                                 </div>
-                                <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Designation</label>
-                                    <input type="text"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
-                                </div>
+                            </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(4)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="button" onclick="nextStep(4)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
                             </div>
                         </div>
 
-                        <!-- Uploads -->
-                        <div>
-                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Documents</h3>
-                            <div
-                                class="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer group">
+                        <!-- Step 5: Uploads -->
+                        <div class="form-step hidden" data-step="5">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Document Uploads
+                            </h3>
+                            <div class="mb-6">
+                                <label class="block text-sm font-medium text-slate-700 mb-2">Trade License *</label>
                                 <div
-                                    class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                                    <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-8 text-center hover:bg-slate-50 transition-colors cursor-pointer group relative">
+                                    <input type="file" required accept=".pdf,.jpg,.jpeg,.png"
+                                        class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-20">
+                                    <div class="relative z-10 pointer-events-none">
+                                        <div
+                                            class="w-12 h-12 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
+                                            <i data-lucide="upload-cloud" class="w-6 h-6"></i>
+                                        </div>
+                                        <p class="text-sm font-medium text-slate-700">Click to upload or drag and drop
+                                        </p>
+                                        <p class="text-xs text-slate-400 mt-1">PDF, JPG, PNG under 10MB</p>
+                                    </div>
                                 </div>
-                                <p class="text-sm font-medium text-slate-700">Click to upload or drag and drop</p>
-                                <p class="text-xs text-slate-400 mt-1">Trade License, Tax Certificate (PDF, JPG up to
-                                    10MB)</p>
-                                <input type="file" class="hidden">
                             </div>
-                        </div>
-
-                        <div class="pt-4">
-                            <button type="submit"
-                                class="w-full bg-brand-navy hover:bg-brand-accent text-white font-medium py-3 rounded-sm transition-all shadow-lg shadow-brand-navy/20">
-                                Submit Registration
-                            </button>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(5)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="submit"
+                                    class="px-6 py-2 bg-brand-navy hover:bg-brand-accent text-white font-medium rounded-sm transition-all shadow-lg shadow-brand-navy/20">Complete
+                                    Registration</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -179,62 +295,149 @@
                         <p class="text-sm text-slate-500 mt-1">For vendors and contractors joining our supply chain.</p>
                     </div>
 
-                    <form onsubmit="event.preventDefault(); submitForm(this, 'Provider');" class="space-y-8">
-                        <!-- Company Info -->
-                        <div>
+                    <form onsubmit="event.preventDefault(); submitForm(this, 'Provider');" class="min-h-[400px]"
+                        id="provider-wizard-form">
+
+                        <!-- Step 1: Company Info -->
+                        <div class="form-step" data-step="1">
                             <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Company Details
                             </h3>
-                            <div class="grid md:grid-cols-2 gap-6">
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Type *</label>
+                                    <select required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all bg-white">
+                                        <option value="">Select company type</option>
+                                        <option value="Sole Proprietorship">Sole Proprietorship</option>
+                                        <option value="Civil Company">Civil Company</option>
+                                        <option value="Limited Liability Company (LLC)">Limited Liability Company (LLC)
+                                        </option>
+                                        <option value="Free Zone Company (FZC)">Free Zone Company (FZC)</option>
+                                        <option value="Partnership">Partnership</option>
+                                        <option value="Public Joint Stock Company (PJSC)">Public Joint Stock Company
+                                            (PJSC)</option>
+                                        <option value="Private Joint Stock Company">Private Joint Stock Company</option>
+                                        <option value="Branch Office of Foreign Companies">Branch Office of Foreign
+                                            Companies</option>
+                                    </select>
+                                </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Company Name *</label>
                                     <input type="text" required
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Trade License No.
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Company Email *</label>
+                                    <input type="email" required
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Established Year
                                         *</label>
-                                    <input type="text" required
+                                    <input type="number" required min="1900" max="2025"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">No. of Employees
+                                        *</label>
+                                    <input type="number" required min="1"
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                                 <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Core Services
-                                        Provided</label>
-                                    <textarea rows="2"
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
-                                        placeholder="e.g. HVAC Maintenance, Cleaning, Security..."></textarea>
+                                    <label class="block text-sm font-medium text-slate-700 mb-2">Services Provided
+                                        *</label>
+                                    <div id="provider-services-container" class="space-y-2">
+                                        <!-- Dynamic Services will appear here -->
+                                        <div class="flex gap-2">
+                                            <input type="text" placeholder="Enter service name" required
+                                                class="flex-1 px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                        </div>
+                                    </div>
+                                    <button type="button" onclick="addServiceField()"
+                                        class="text-sm text-brand-navy font-bold mt-2 hover:underline">+ Add Another
+                                        Service</button>
                                 </div>
+                            </div>
+                            <div class="flex justify-end pt-4">
+                                <button type="button" onclick="nextStep(1)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
                             </div>
                         </div>
 
-                        <!-- Contact Details -->
-                        <div>
-                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact
-                                Information</h3>
-                            <div class="grid md:grid-cols-2 gap-6">
+                        <!-- Step 2: Provider Details -->
+                        <div class="form-step hidden" data-step="2">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Provider Details
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
                                 <div>
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Contact Person
-                                        *</label>
-                                    <input type="text" required
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Provider Type</label>
+                                    <input type="text"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                        placeholder="e.g., Construction, IT">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Years of
+                                        Experience</label>
+                                    <input type="number" min="0" max="100"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div class="md:col-span-2">
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Service Areas</label>
+                                    <textarea rows="3"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all"
+                                        placeholder="Describe the areas you serve"></textarea>
+                                </div>
+                            </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(2)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="button" onclick="nextStep(2)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
+                            </div>
+                        </div>
+
+                        <!-- Step 3: Contact Details -->
+                        <div class="form-step hidden" data-step="3">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Contact Details
+                            </h3>
+                            <div class="grid md:grid-cols-2 gap-6 mb-6">
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Contact Name *</label>
+                                    <input type="text" required minlength="3"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Designation *</label>
+                                    <input type="text" required minlength="2"
+                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-slate-700 mb-1">Email *</label>
+                                    <input type="email" required
+                                        pattern="^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$"
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                                 <div>
                                     <label class="block text-sm font-medium text-slate-700 mb-1">Phone Number *</label>
-                                    <input type="tel" required
-                                        class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
-                                </div>
-                                <div class="md:col-span-2">
-                                    <label class="block text-sm font-medium text-slate-700 mb-1">Email Address *</label>
-                                    <input type="email" required
+                                    <input type="tel" required pattern="^(?:[0-9]●?){7,15}$"
                                         class="w-full px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
                                 </div>
                             </div>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(3)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="button" onclick="nextStep(3)"
+                                    class="px-6 py-2 bg-brand-navy text-white rounded-sm hover:bg-brand-accent transition-colors">Next</button>
+                            </div>
                         </div>
 
-                        <!-- Uploads -->
-                        <div>
+                        <!-- Step 4: Location Information -->
+                        <div class="form-step hidden" data-step="4">
+                            <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Location
+                                Information</h3>
                             <h3 class="text-sm font-bold text-brand-gold uppercase tracking-wider mb-4">Required
                                 Documents</h3>
-                            <div class="grid md:grid-cols-2 gap-4">
+                            <div class="grid md:grid-cols-2 gap-4 mb-6">
                                 <div
                                     class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
                                     <p class="text-sm font-medium text-slate-700">Company Profile</p>
@@ -255,14 +458,19 @@
                                     <p class="text-sm font-medium text-slate-700">ISO Certificates</p>
                                     <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
                                 </div>
+                                <div
+                                    class="border-2 border-dashed border-slate-300 rounded-lg p-6 text-center hover:bg-slate-50 transition-colors cursor-pointer">
+                                    <p class="text-sm font-medium text-slate-700">Tax Card</p>
+                                    <i data-lucide="file-plus" class="w-5 h-5 text-brand-gold mx-auto mt-2"></i>
+                                </div>
                             </div>
-                        </div>
-
-                        <div class="pt-4">
-                            <button type="submit"
-                                class="w-full bg-brand-navy hover:bg-brand-accent text-white font-medium py-3 rounded-sm transition-all shadow-lg shadow-brand-navy/20">
-                                Submit Application
-                            </button>
+                            <div class="flex justify-between pt-4">
+                                <button type="button" onclick="prevStep(5)"
+                                    class="px-6 py-2 border border-slate-300 text-slate-600 rounded-sm hover:bg-slate-50 transition-colors">Previous</button>
+                                <button type="submit"
+                                    class="px-6 py-2 bg-brand-navy hover:bg-brand-accent text-white font-medium rounded-sm transition-all shadow-lg shadow-brand-navy/20">Submit
+                                    Application</button>
+                            </div>
                         </div>
                     </form>
                 </div>
@@ -297,35 +505,151 @@
 
     <script src="script.js"></script>
     <script>
+        // State
+        let currentFormId = 'client-wizard-form';
+        let currentStep = 1;
+        const totalSteps = 5;
+
+        // Initialize
+        document.addEventListener('DOMContentLoaded', () => {
+            // Show Client Tab by default and initialize stepper
+            switchTab('client');
+        });
+
         function switchTab(type) {
             const clientTab = document.getElementById('tab-client');
             const providerTab = document.getElementById('tab-provider');
-            const clientForm = document.getElementById('form-client');
-            const providerForm = document.getElementById('form-provider');
+            const clientFormContainer = document.getElementById('form-client');
+            const providerFormContainer = document.getElementById('form-provider');
+            const stepperWrapper = document.getElementById('stepper-wrapper');
 
+            // Reset Step State
+            currentStep = 1;
+            updateStepperUI(1);
+
+            // Show Stepper
+            stepperWrapper.classList.remove('hidden');
+
+            // Toggle Tabs & Containers
             if (type === 'client') {
-                // Activate Client Tab
+                currentFormId = 'client-wizard-form';
+
+                // Active Client Tab
                 clientTab.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
                 clientTab.classList.remove('text-slate-500');
-
                 providerTab.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
                 providerTab.classList.add('text-slate-500');
 
-                // Show Client Form
-                clientForm.classList.remove('hidden');
-                providerForm.classList.add('hidden');
+                // Show Client Container / Hide Provider
+                clientFormContainer.classList.remove('hidden');
+                providerFormContainer.classList.add('hidden');
 
             } else {
-                // Activate Provider Tab
+                currentFormId = 'provider-wizard-form';
+
+                // Active Provider Tab
                 providerTab.classList.add('bg-brand-navy', 'text-white', 'shadow-sm');
                 providerTab.classList.remove('text-slate-500');
-
                 clientTab.classList.remove('bg-brand-navy', 'text-white', 'shadow-sm');
                 clientTab.classList.add('text-slate-500');
 
-                // Show Provider Form
-                providerForm.classList.remove('hidden');
-                clientForm.classList.add('hidden');
+                // Show Provider Container / Hide Client
+                providerFormContainer.classList.remove('hidden');
+                clientFormContainer.classList.add('hidden');
+            }
+
+            // Global Reset: Hide all steps in both forms first
+            document.querySelectorAll('.form-step').forEach(step => {
+                step.classList.add('hidden');
+            });
+
+            // Show Step 1 of the Active Form
+            const activeForm = document.getElementById(currentFormId);
+            const step1 = activeForm.querySelector('.form-step[data-step="1"]');
+            if (step1) {
+                step1.classList.remove('hidden');
+            }
+        }
+
+        function nextStep(currentStepIndex) {
+            const form = document.getElementById(currentFormId);
+            const currentStepEl = form.querySelector(`.form-step[data-step="${currentStepIndex}"]`);
+
+            // Validate inputs in current step
+            const inputs = currentStepEl.querySelectorAll('input, select, textarea');
+            let isValid = true;
+            for (const input of inputs) {
+                if (!input.checkValidity()) {
+                    input.reportValidity();
+                    isValid = false;
+                    break;
+                }
+            }
+
+            if (isValid) {
+                // Hide Current
+                currentStepEl.classList.add('hidden');
+
+                // Show Next
+                const nextStepIndex = currentStepIndex + 1;
+                const nextStepEl = form.querySelector(`.form-step[data-step="${nextStepIndex}"]`);
+                if (nextStepEl) {
+                    nextStepEl.classList.remove('hidden');
+                    currentStep = nextStepIndex;
+                    updateStepperUI(currentStep);
+                }
+            }
+        }
+
+        function prevStep(currentStepIndex) {
+            const form = document.getElementById(currentFormId);
+            const currentStepEl = form.querySelector(`.form-step[data-step="${currentStepIndex}"]`);
+
+            // Hide Current
+            currentStepEl.classList.add('hidden');
+
+            // Show Previous
+            const prevStepIndex = currentStepIndex - 1;
+            const prevStepEl = form.querySelector(`.form-step[data-step="${prevStepIndex}"]`);
+            if (prevStepEl) {
+                prevStepEl.classList.remove('hidden');
+                currentStep = prevStepIndex;
+                updateStepperUI(currentStep);
+            }
+        }
+
+        function updateStepperUI(activeStep) {
+            // Update Progress Bar
+            const progressBar = document.getElementById('progress-bar');
+            const progress = ((activeStep - 1) / (totalSteps - 1)) * 100;
+            progressBar.style.width = `${progress}%`;
+
+            // Update Indicators
+            const indicators = document.querySelectorAll('.step-indicator');
+            indicators.forEach(indicator => {
+                const index = parseInt(indicator.dataset.index);
+
+                // Reset classes
+                indicator.className = 'step-indicator w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm transition-all duration-300 border-4 border-slate-50 relative z-10';
+
+                if (index < activeStep) {
+                    // Completed
+                    indicator.classList.add('bg-green-500', 'text-white');
+                    indicator.innerHTML = '<i data-lucide="check" class="w-4 h-4"></i>';
+                } else if (index === activeStep) {
+                    // Active
+                    indicator.classList.add('bg-brand-navy', 'text-white', 'shadow-lg', 'scale-110');
+                    indicator.textContent = index;
+                } else {
+                    // Inactive
+                    indicator.classList.add('bg-slate-200', 'text-slate-500');
+                    indicator.textContent = index;
+                }
+            });
+
+            // Re-init icons for the checkmarks
+            if (typeof lucide !== 'undefined') {
+                lucide.createIcons();
             }
         }
 
@@ -340,6 +664,42 @@
             setTimeout(() => {
                 document.getElementById('success-overlay').classList.remove('hidden');
             }, 1000);
+        }
+
+        function addServiceField() {
+            const container = document.getElementById('provider-services-container');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2';
+            div.innerHTML = `
+                <input type="text" placeholder="Enter service name" required
+                    class="flex-1 px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 font-bold p-2">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addClientField() {
+            const container = document.getElementById('provider-clients-container');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2';
+            div.innerHTML = `
+                <input type="text" placeholder="Enter client name" 
+                    class="flex-1 px-4 py-2 border border-slate-300 rounded-sm focus:ring-2 focus:ring-brand-gold focus:border-transparent outline-none transition-all">
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 font-bold p-2">✕</button>
+            `;
+            container.appendChild(div);
+        }
+
+        function addCertificationField() {
+            const container = document.getElementById('provider-certifications-container');
+            const div = document.createElement('div');
+            div.className = 'flex gap-2 items-center';
+            div.innerHTML = `
+                <input type="file" accept=".pdf,.jpg,.jpeg,.png"
+                    class="flex-1 block w-full text-sm text-slate-500 file:mr-4 file:py-2 file:px-4 file:rounded-full file:border-0 file:text-sm file:font-semibold file:bg-brand-navy/10 file:text-brand-navy hover:file:bg-brand-navy/20"/>
+                <button type="button" onclick="this.parentElement.remove()" class="text-red-500 hover:text-red-700 font-bold p-2">✕</button>
+            `;
+            container.appendChild(div);
         }
     </script>
 </body>
